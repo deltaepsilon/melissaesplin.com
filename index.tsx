@@ -117,7 +117,7 @@ async function copyPublicFolder() {
   return new Promise<void>((resolve, reject) => {
     try {
       const publicSourceDir = path.join(__dirname, "public");
-      const publicDestDir = path.join(__dirname, "static");
+      const publicDestDir = path.join(__dirname, "docs");
 
       if (!fs.existsSync(publicDestDir)) {
         fs.mkdirSync(publicDestDir, { recursive: true });

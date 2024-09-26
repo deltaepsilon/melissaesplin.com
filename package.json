@@ -10,7 +10,7 @@
     "build:client": "bun run client.tsx",
     "serve": "bun run server.ts",
     "tw:watch": "bun run tw:build --watch",
-    "tw:build": "bun run tailwindcss -i ./templates/styles.css -o ./static/styles.css",
+    "tw:build": "bun run tailwindcss -i ./templates/styles.css -o ./docs/styles.css",
     "lint": "eslint ."
   },
   "dependencies": {
