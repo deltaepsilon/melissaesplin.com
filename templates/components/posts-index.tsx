@@ -45,7 +45,6 @@ export function PostsIndex({ posts }: { posts: Posts }) {
     <div
       id="posts-index"
       className="relative flex flex-col gap-1 max-w-xs w-full"
-      //   onChange={(isFocused) => setIsFocused(isFocused)}
     >
       <div id="posts-search" className="">
         <PostsSearch />
@@ -81,17 +80,18 @@ export function PostsIndex({ posts }: { posts: Posts }) {
                           </div>
                           <div className="pl-2">
                             {posts.flatMap((post) => (
-                              <div
-                                className="post-title flex text-bold"
-                                key={post.id}
-                                data-title={post.post_title}
-                                data-href={hrefFromPost(post)}
-                                data-date={new Date(
-                                  post.post_date_gmt
-                                ).toISOString()}
-                              >
-                                {post.post_title}
-                              </div>
+                              <a key={post.id} href={hrefFromPost(post)}>
+                                <div
+                                  className="post-title flex text-bold"
+                                  data-title={post.post_title}
+                                  data-href={hrefFromPost(post)}
+                                  data-date={new Date(
+                                    post.post_date_gmt
+                                  ).toISOString()}
+                                >
+                                  {post.post_title}
+                                </div>
+                              </a>
                             ))}
                           </div>
                         </div>

@@ -5,7 +5,13 @@ import { Main } from "./components/main";
 import { Column, Padded } from "./components/column";
 import { BlogPost } from "./components/post";
 
-export function Index({ posts }: { posts: Posts }) {
+export function Index({
+  posts,
+  postIds,
+}: {
+  posts: Posts;
+  postIds: Set<number>;
+}) {
   return (
     <>
       <html lang="en">
@@ -28,7 +34,7 @@ export function Index({ posts }: { posts: Posts }) {
             href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
           />
-          <script type="module" src="./client.js" />
+          <script type="module" src="/client.js" />
         </head>
         <body
           id="root"
@@ -38,9 +44,11 @@ export function Index({ posts }: { posts: Posts }) {
           <Main>
             <Column>
               <Padded className="py-8">
-                {posts.slice(0, 5).map((post) => (
-                  <BlogPost key={post.id} post={post} />
-                ))}
+                {posts
+                  .filter((p) => postIds.has(p.id))
+                  .map((post) => (
+                    <BlogPost key={post.id} post={post} />
+                  ))}
               </Padded>
             </Column>
           </Main>
