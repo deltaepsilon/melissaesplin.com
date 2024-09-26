@@ -4,6 +4,7 @@ import { Header } from "./components/header";
 import { Main } from "./components/main";
 import { Column, Padded } from "./components/column";
 import { BlogPost } from "./components/post";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Index({
   posts,
@@ -12,6 +13,19 @@ export function Index({
   posts: Posts;
   postIds: Set<number>;
 }) {
+  const firstPost = posts.find((p) => postIds.has(p.id));
+  const firstPostDate = new Date(firstPost.post_date);
+  const nextMonthDate = new Date(
+    firstPostDate.setMonth(firstPostDate.getMonth() + 1)
+  );
+  const previousMonthDate = new Date(
+    firstPostDate.setMonth(firstPostDate.getMonth() - 1)
+  );
+  const nextYear = nextMonthDate.getFullYear();
+  const nextMonth = String(nextMonthDate.getMonth() + 1).padStart(2, "0");
+  const previousYear = previousMonthDate.getFullYear();
+  const previousMonth = String(previousMonthDate.getMonth()).padStart(2, "0");
+
   return (
     <>
       <html lang="en">
@@ -49,6 +63,38 @@ export function Index({
                   .map((post) => (
                     <BlogPost key={post.id} post={post} />
                   ))}
+              </Padded>
+              <Padded>
+                <footer className="flex flex-col gap-8 py-4">
+                  <div className="flex justify-between">
+                    <a href={`/${nextYear}/${nextMonth}`}>
+                      <div className="flex items-center gap-2">
+                        <ChevronLeft size={24} />
+                        <span className="underline">
+                          {previousMonthDate.toLocaleDateString("en-US", {
+                            month: "long",
+                            year: "numeric",
+                          })}
+                        </span>
+                      </div>
+                    </a>
+
+                    <a href={`/${nextYear}/${nextMonth}`}>
+                      <div className="flex items-center gap-2">
+                        <span className="underline">
+                          {nextMonthDate.toLocaleDateString("en-US", {
+                            month: "long",
+                            year: "numeric",
+                          })}
+                        </span>
+                        <ChevronRight size={24} />
+                      </div>
+                    </a>
+                  </div>
+                  <div className="text-sm text-left">
+                    &copy; {new Date().getFullYear()} Melissa Esplin
+                  </div>
+                </footer>
               </Padded>
             </Column>
           </Main>
