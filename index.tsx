@@ -13,8 +13,8 @@ async function render() {
   console.time("Render");
   const posts = await getPosts(5000);
 
-  // Empty the static folder
-  fs.rmdirSync(path.join(__dirname, "static"), { recursive: true });
+  // Empty the docs folder
+  fs.rmdirSync(path.join(__dirname, "docs"), { recursive: true });
 
   let count = await staticallyRender(posts);
   console.log(`rendered ${count} files...`);
@@ -49,7 +49,7 @@ async function staticallyRenderIndividualPosts(posts: Posts) {
         />
       );
       const postFile = Bun.file(
-        `./static/${year}/${month}/${post.post_name}.html`
+        `./docs/${year}/${month}/${post.post_name}.html`
       );
 
       await Bun.write(postFile, renderedHtml);
@@ -85,7 +85,7 @@ async function staticallyRenderMonthlyArchives(posts: Posts) {
           nextMonthDate={nextMonthDate}
         />
       );
-      const monthFile = Bun.file(`./static/${folders}/index.html`);
+      const monthFile = Bun.file(`./docs/${folders}/index.html`);
 
       await Bun.write(monthFile, renderedHtml);
     })
@@ -99,7 +99,7 @@ async function staticallyRender(posts: Posts) {
   const renderedHtml = ReactDOMServer.renderToString(
     <Index posts={posts} postIds={postIds} nextMonthDate={nextMonthDate} />
   );
-  const indexHtml = Bun.file("./static/index.html");
+  const indexHtml = Bun.file("./docs/index.html");
 
   await Bun.write(indexHtml, renderedHtml);
 
@@ -109,7 +109,7 @@ async function staticallyRender(posts: Posts) {
 async function buildClient() {
   await Bun.build({
     entrypoints: ["./client.tsx"],
-    outdir: "./static",
+    outdir: "./docs",
   });
 }
 

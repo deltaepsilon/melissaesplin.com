@@ -8,10 +8,10 @@ const server = Bun.serve({
     const isFile = url.pathname.includes(".");
     const isFolder = url.pathname.endsWith("/");
     const filePath = isFile
-      ? `./static${url.pathname}`
+      ? `./docs${url.pathname}`
       : isFolder
-      ? `./static${url.pathname}/index.html`
-      : `./static${url.pathname}.html`;
+      ? `./docs${url.pathname}/index.html`
+      : `./docs${url.pathname}.html`;
     const filestream = Bun.file(filePath).stream();
 
     return new Response(filestream);
@@ -42,9 +42,9 @@ const wsServer = Bun.serve({
 });
 
 let timer: ReturnType<typeof setTimeout>;
-watch("./static", { recursive: true }, () => {
+watch("./docs", { recursive: true }, () => {
   if (timer) clearTimeout(timer);
-  
+
   timer = setTimeout(() => wsServer.publish(HOT_RELOAD_CHANNEL, "update"), 100);
 });
 
