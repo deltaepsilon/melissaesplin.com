@@ -5,36 +5,50 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 
-render().then(() => {
-  console.log("✍️ Rendered HTML written to ./static/index.html");
+render().then((count) => {
+  console.log(`✍️ Rendered ${count} pages of HTML`);
 });
 
 async function render() {
   const posts = await getPosts(5000);
 
-  await staticallyRender(posts);
+  let count = await staticallyRender(posts);
+  count += await staticallyRenderIndividualPosts(posts);
+
   await buildClient();
-  // const transpiler = new Bun.Transpiler({
-  //   loader: "tsx",
-  //   tsconfig: { compilerOptions: { jsx: "react" } },
-  // });
-  // const typeScript = await Bun.file("./client.tsx").text();
-  // const javaScript = await transpiler.transform(typeScript);
-  // const clientJs = Bun.file("./static/client.js");
-
-  // await Bun.write(clientJs, javaScript);
-  // await Bun.write(indexHtml, renderedHtml);
-
-  // const outputPath = path.join(__dirname, "static", "index.html");
-  // fs.writeFileSync(outputPath, renderedString, "utf8");
   await copyPublicFolder();
+
+  return count;
+}
+
+async function staticallyRenderIndividualPosts(posts: Posts) {
+  for (const post of posts) {
+    const postDate = new Date(post.post_date);
+    const year = postDate.getFullYear();
+    const month = String(postDate.getMonth() + 1).padStart(2, "0");
+    const renderedHtml = ReactDOMServer.renderToString(
+      <Index posts={posts} postIds={new Set([post.id])} />
+    );
+    const postHtml = Bun.file(
+      `./static/${year}/${month}/${post.post_name}.html`
+    );
+
+    await Bun.write(postHtml, renderedHtml);
+  }
+
+  return posts.length;
 }
 
 async function staticallyRender(posts: Posts) {
-  const renderedHtml = ReactDOMServer.renderToString(<Index posts={posts} />);
+  const postIds = new Set(posts.slice(0, 5).map((post) => post.id));
+  const renderedHtml = ReactDOMServer.renderToString(
+    <Index posts={posts} postIds={postIds} />
+  );
   const indexHtml = Bun.file("./static/index.html");
 
   await Bun.write(indexHtml, renderedHtml);
+
+  return 1;
 }
 
 async function buildClient() {
