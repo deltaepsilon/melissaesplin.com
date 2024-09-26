@@ -41,8 +41,11 @@ const wsServer = Bun.serve({
   port: 3001,
 });
 
+let timer: ReturnType<typeof setTimeout>;
 watch("./static", { recursive: true }, () => {
-  setTimeout(() => wsServer.publish(HOT_RELOAD_CHANNEL, "update"), 100);
+  if (timer) clearTimeout(timer);
+  
+  timer = setTimeout(() => wsServer.publish(HOT_RELOAD_CHANNEL, "update"), 100);
 });
 
 console.log(`Server running at ${server.hostname}:${server.port}`);

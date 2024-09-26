@@ -1,30 +1,37 @@
 import React from "react";
 import { Input } from "../ui/input";
-import Fuse from "fuse.js";
+import Fuse, { FuseResult } from "fuse.js";
 import clsx from "clsx";
-
-type Results = {
-  refIndex: number;
-  score: number;
-  item: { title: string; href: string; date: string };
-}[];
 
 export function PostsSearch() {
   const [isFocused, setIsFocused] = React.useState(false);
   const [search, setSearch] = React.useState("");
-  const [results, setResults] = React.useState<Results>([]);
-  const fuseRef = React.useRef(null);
+  const [results, setResults] = React.useState<
+    FuseResult<{
+      title: string | null;
+      href: string | null;
+      date: string;
+    }>[]
+  >([]);
+  const fuseRef = React.useRef<Fuse<{
+    title: string | null;
+    href: string | null;
+    date: string;
+  }> | null>(null);
 
   React.useEffect(() => {
     const postTitleElements = document.querySelectorAll(".post-title");
     const titles = Array.from(postTitleElements).map((el) => ({
       title: el.getAttribute("data-title"),
       href: el.getAttribute("data-href"),
-      date: new Date(el.getAttribute("data-date")).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
+      date: new Date(el.getAttribute("data-date") ?? "").toLocaleDateString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }
+      ),
     }));
 
     const fuse = new Fuse(titles, {
@@ -46,6 +53,8 @@ export function PostsSearch() {
   React.useEffect(() => {
     const byYearEl = document.getElementById("by-year");
 
+    if (!byYearEl) return;
+
     if (isFocused) {
       byYearEl.classList.remove("hidden");
     } else {
@@ -65,7 +74,6 @@ export function PostsSearch() {
         }}
       />
       <Input
-        autoFocus
         className="relative z-10"
         type="text"
         placeholder="Search"
@@ -85,8 +93,12 @@ export function PostsSearch() {
         }}
         onFocus={() => {
           const byYearEl = document.getElementById("by-year");
+          if (!byYearEl) return;
+
           byYearEl.classList.remove("hidden");
+
           setIsFocused(true);
+
           const checkboxes = document.querySelectorAll(
             "input[type=checkbox]"
           ) as NodeListOf<HTMLInputElement>;
@@ -106,7 +118,7 @@ export function PostsSearch() {
           const year = new Date(r.item.date).getFullYear();
 
           return (
-            <a key={r.item.href} className="text-sm" href={r.item.href}>
+            <a key={r.item.href} className="text-sm" href={r.item.href ?? ""}>
               <span className="font-semibold">{year}</span>{" "}
               <span className="underline">{r.item.title}</span>
             </a>

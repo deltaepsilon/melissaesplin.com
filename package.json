@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run build:watch & bun run serve & bun run tw:watch",
-    "build": "bun run index.tsx",
+    "build": "bun run index.tsx &&  bun run tw:build",
     "build:watch": "bun run --watch index.tsx",
     "build:client": "bun run client.tsx",
     "serve": "bun run server.ts",

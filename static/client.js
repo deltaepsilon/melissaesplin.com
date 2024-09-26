@@ -25302,7 +25302,7 @@ function PostsSearch() {
     const titles = Array.from(postTitleElements).map((el) => ({
       title: el.getAttribute("data-title"),
       href: el.getAttribute("data-href"),
-      date: new Date(el.getAttribute("data-date")).toLocaleDateString("en-US", {
+      date: new Date(el.getAttribute("data-date") ?? "").toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric"
@@ -25323,6 +25323,8 @@ function PostsSearch() {
   }, [search2]);
   import_react.default.useEffect(() => {
     const byYearEl = document.getElementById("by-year");
+    if (!byYearEl)
+      return;
     if (isFocused) {
       byYearEl.classList.remove("hidden");
     } else {
@@ -25340,7 +25342,6 @@ function PostsSearch() {
       setIsFocused(false);
     }
   }), /* @__PURE__ */ import_react.default.createElement(Input, {
-    autoFocus: true,
     className: "relative z-10",
     type: "text",
     placeholder: "Search",
@@ -25359,6 +25360,8 @@ function PostsSearch() {
     },
     onFocus: () => {
       const byYearEl = document.getElementById("by-year");
+      if (!byYearEl)
+        return;
       byYearEl.classList.remove("hidden");
       setIsFocused(true);
       const checkboxes = document.querySelectorAll("input[type=checkbox]");
@@ -25373,7 +25376,7 @@ function PostsSearch() {
     return /* @__PURE__ */ import_react.default.createElement("a", {
       key: r2.item.href,
       className: "text-sm",
-      href: r2.item.href
+      href: r2.item.href ?? ""
     }, /* @__PURE__ */ import_react.default.createElement("span", {
       className: "font-semibold"
     }, year), " ", /* @__PURE__ */ import_react.default.createElement("span", {

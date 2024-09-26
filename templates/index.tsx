@@ -6,25 +6,36 @@ import { Column, Padded } from "./components/column";
 import { BlogPost } from "./components/post";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+type IndexProps = {
+  posts: Posts;
+  postIds: Set<number>;
+  previousMonthDate?: Date;
+  nextMonthDate?: Date;
+  singlePost?: boolean;
+};
+
 export function Index({
   posts,
   postIds,
-}: {
-  posts: Posts;
-  postIds: Set<number>;
-}) {
-  const firstPost = posts.find((p) => postIds.has(p.id));
-  const firstPostDate = new Date(firstPost.post_date);
-  const nextMonthDate = new Date(
-    firstPostDate.setMonth(firstPostDate.getMonth() + 1)
-  );
-  const previousMonthDate = new Date(
-    firstPostDate.setMonth(firstPostDate.getMonth() - 1)
-  );
-  const nextYear = nextMonthDate.getFullYear();
-  const nextMonth = String(nextMonthDate.getMonth() + 1).padStart(2, "0");
-  const previousYear = previousMonthDate.getFullYear();
-  const previousMonth = String(previousMonthDate.getMonth()).padStart(2, "0");
+  previousMonthDate,
+  nextMonthDate,
+  singlePost,
+}: IndexProps) {
+  const filteredPosts = posts.filter((p) => postIds.has(p.id));
+  const currentMonthDate =
+    filteredPosts[0].post_date && new Date(filteredPosts[0].post_date);
+  const currentYear = currentMonthDate && currentMonthDate.getFullYear();
+  const currentMonth =
+    currentMonthDate &&
+    String(currentMonthDate.getMonth() + 1).padStart(2, "0");
+
+  const nextYear = nextMonthDate && nextMonthDate.getFullYear();
+  const nextMonth =
+    nextMonthDate && String(nextMonthDate.getMonth() + 1).padStart(2, "0");
+  const previousYear = previousMonthDate && previousMonthDate.getFullYear();
+  const previousMonth =
+    previousMonthDate &&
+    String(previousMonthDate.getMonth() + 1).padStart(2, "0");
 
   return (
     <>
@@ -58,38 +69,59 @@ export function Index({
           <Main>
             <Column>
               <Padded className="py-8">
-                {posts
-                  .filter((p) => postIds.has(p.id))
-                  .map((post) => (
-                    <BlogPost key={post.id} post={post} />
-                  ))}
+                {filteredPosts.map((post) => (
+                  <BlogPost key={post.id} post={post} />
+                ))}
               </Padded>
               <Padded>
                 <footer className="flex flex-col gap-8 py-4">
                   <div className="flex justify-between">
-                    <a href={`/${nextYear}/${nextMonth}`}>
-                      <div className="flex items-center gap-2">
-                        <ChevronLeft size={24} />
-                        <span className="underline">
-                          {previousMonthDate.toLocaleDateString("en-US", {
-                            month: "long",
-                            year: "numeric",
-                          })}
-                        </span>
-                      </div>
-                    </a>
+                    {previousMonthDate ? (
+                      <a href={`/${previousYear}/${previousMonth}/`}>
+                        <div className="flex items-center gap-2">
+                          <ChevronLeft size={24} />
+                          <span className="underline">
+                            {previousMonthDate.toLocaleDateString("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </a>
+                    ) : (
+                      <span />
+                    )}
 
-                    <a href={`/${nextYear}/${nextMonth}`}>
-                      <div className="flex items-center gap-2">
-                        <span className="underline">
-                          {nextMonthDate.toLocaleDateString("en-US", {
-                            month: "long",
-                            year: "numeric",
-                          })}
-                        </span>
-                        <ChevronRight size={24} />
-                      </div>
-                    </a>
+                    {singlePost && currentMonthDate ? (
+                      <a href={`/${currentYear}/${currentMonth}/`}>
+                        <div className="flex items-center gap-2">
+                          <span className="underline">
+                            {currentMonthDate.toLocaleDateString("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </div>
+                      </a>
+                    ) : (
+                      <span />
+                    )}
+
+                    {nextMonthDate ? (
+                      <a href={`/${nextYear}/${nextMonth}/`}>
+                        <div className="flex items-center gap-2">
+                          <span className="underline">
+                            {nextMonthDate.toLocaleDateString("en-US", {
+                              month: "long",
+                              year: "numeric",
+                            })}
+                          </span>
+                          <ChevronRight size={24} />
+                        </div>
+                      </a>
+                    ) : (
+                      <span />
+                    )}
                   </div>
                   <div className="text-sm text-left">
                     &copy; {new Date().getFullYear()} Melissa Esplin
