@@ -14,7 +14,7 @@ async function render() {
   const posts = await getPosts(5000);
 
   // Empty the docs folder
-  fs.rmdirSync(path.join(__dirname, "docs"), { recursive: true });
+  // fs.rmdirSync(path.join(__dirname, "docs"), { recursive: true });
 
   let count = await staticallyRender(posts);
   console.log(`rendered ${count} files...`);
