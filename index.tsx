@@ -51,8 +51,12 @@ async function staticallyRenderIndividualPosts(posts: Posts) {
       const postFile = Bun.file(
         `./docs/${year}/${month}/${post.post_name}.html`
       );
+      const postIndexFile = Bun.file(
+        `./docs/${year}/${month}/${post.post_name}/index.html`
+      );
 
       await Bun.write(postFile, renderedHtml);
+      await Bun.write(postIndexFile, renderedHtml);
     })
   );
 
