@@ -22648,7 +22648,7 @@ var require_client = __commonJS((exports) => {
 });
 
 // client.tsx
-var client = __toESM(require_client(), 1);
+var import_client = __toESM(require_client(), 1);
 var import_react2 = __toESM(require_react(), 1);
 
 // templates/components/posts-search.tsx
@@ -25352,8 +25352,8 @@ function PostsSearch() {
         if (search2.length) {
           setSearch("");
         } else {
-          const input2 = e.target;
-          input2.blur();
+          const input = e.target;
+          input.blur();
           setIsFocused(false);
         }
       }
@@ -25386,4 +25386,4 @@ function PostsSearch() {
 }
 
 // client.tsx
-client.hydrateRoot(document.getElementById("posts-search"), /* @__PURE__ */ import_react2.default.createElement(PostsSearch, null));
+import_client.hydrateRoot(document.getElementById("posts-search"), /* @__PURE__ */ import_react2.default.createElement(PostsSearch, null));
