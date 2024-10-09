@@ -38,9 +38,11 @@ async function staticallyRenderIndividualPosts(posts: Posts) {
       const month = String(postDate.getMonth() + 1).padStart(2, "0");
       const previousMonthDate = getPreviousMonthDate(posts, index);
       const nextMonthDate = getNextMonthDate(posts, index);
+      const canonicalUrl = `${year}/${month}/${post.post_name}`;
 
       const renderedHtml = ReactDOMServer.renderToString(
         <Index
+          canonicalUrl={canonicalUrl}
           posts={posts}
           postIds={new Set([post.id])}
           previousMonthDate={previousMonthDate}
@@ -48,12 +50,8 @@ async function staticallyRenderIndividualPosts(posts: Posts) {
           singlePost
         />
       );
-      const postFile = Bun.file(
-        `./docs/${year}/${month}/${post.post_name}.html`
-      );
-      const postIndexFile = Bun.file(
-        `./docs/${year}/${month}/${post.post_name}/index.html`
-      );
+      const postFile = Bun.file(`./docs/${canonicalUrl}.html`);
+      const postIndexFile = Bun.file(`./docs/${canonicalUrl}/index.html`);
 
       await Bun.write(postFile, renderedHtml);
       await Bun.write(postIndexFile, renderedHtml);

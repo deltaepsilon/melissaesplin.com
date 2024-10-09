@@ -7,6 +7,7 @@ import { BlogPost } from "./components/post";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type IndexProps = {
+  canonicalUrl?: string;
   posts: Posts;
   postIds: Set<number>;
   previousMonthDate?: Date;
@@ -15,6 +16,7 @@ type IndexProps = {
 };
 
 export function Index({
+  canonicalUrl,
   posts,
   postIds,
   previousMonthDate,
@@ -44,6 +46,7 @@ export function Index({
           <title>MelissaEsplin.com</title>
           <meta charSet="UTF-8" />
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          {canonicalUrl && <link rel="canonical" href={`/${canonicalUrl}`} />}
           <link rel="stylesheet" href="/styles.css" />
           <meta
             name="viewport"
