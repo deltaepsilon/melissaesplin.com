@@ -1,6 +1,8 @@
 import { watch } from "fs";
 
 const HOT_RELOAD_CHANNEL = "hot-reload-channel";
+const PORT = Number(process.env.PORT ?? 3800);
+const WS_PORT = Number(process.env.WS_PORT ?? 3801);
 
 const server = Bun.serve({
   fetch(req: Request): Response {
@@ -16,7 +18,7 @@ const server = Bun.serve({
 
     return new Response(filestream);
   },
-  port: 3000,
+  port: PORT,
 });
 
 const wsServer = Bun.serve({
@@ -38,7 +40,7 @@ const wsServer = Bun.serve({
       ws.unsubscribe(HOT_RELOAD_CHANNEL);
     },
   },
-  port: 3001,
+  port: WS_PORT,
 });
 
 let timer: ReturnType<typeof setTimeout>;
@@ -48,4 +50,4 @@ watch("./docs", { recursive: true }, () => {
   timer = setTimeout(() => wsServer.publish(HOT_RELOAD_CHANNEL, "update"), 100);
 });
 
-console.log(`Server running at ${server.hostname}:${server.port}`);
+console.log(`Server running at http://${server.hostname}:${server.port} (HMR ws://localhost:${wsServer.port})`);

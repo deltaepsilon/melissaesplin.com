@@ -1,5 +1,5 @@
 if (window.location.hostname === 'localhost') {
-    const socket = new WebSocket('ws://localhost:3001');
+    const socket = new WebSocket('ws://localhost:3801');
 
     socket.onopen = function (event) {
         console.log('🤖 Hot reloading started...');
