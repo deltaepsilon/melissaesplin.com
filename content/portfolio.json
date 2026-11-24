@@ -1,0 +1,146 @@
+[
+  {
+    "id": "0-6",
+    "src": "/images/engraving/miss-dior-bottle.jpg",
+    "title": "Miss Dior Fragrance Engraving",
+    "category": "Engraving & Onsite",
+    "featured": true,
+    "alt": "A hand holding a Miss Dior perfume bottle engraved with the calligraphy phrase Always & Forever."
+  },
+  {
+    "id": "0-7",
+    "src": "/images/engraving/green-glass-floral.jpg",
+    "title": "Gold Floral Perfume Engraving",
+    "category": "Engraving & Onsite",
+    "featured": true,
+    "alt": "A hand holding a green glass perfume bottle engraved with gold floral illustrations and the name Deb."
+  },
+  {
+    "id": "0-2",
+    "src": "/images/engraving/mind-games-bottle.jpg",
+    "title": "Metallic Perfume Bottle Engraving",
+    "category": "Engraving & Onsite",
+    "featured": true,
+    "alt": "A hand holding a metallic silver Mind Games perfume bottle engraved with the words Your Move Good Luck."
+  },
+  {
+    "id": "0-1",
+    "src": "/images/engraving/cosmetic-case.jpg",
+    "title": "Engraved Cosmetic Case",
+    "category": "Engraving & Onsite",
+    "featured": false,
+    "alt": "A hand holding a translucent pink cosmetic case engraved in delicate calligraphy with the words You look fabulous."
+  },
+  {
+    "id": "0-4",
+    "src": "/images/engraving/velvet-bag-painting.jpg",
+    "title": "Live Event Bag Painting",
+    "category": "Engraving & Onsite",
+    "featured": true,
+    "alt": "A hand holding up a burgundy bag painted with pink floral illustrations."
+  },
+  {
+    "id": "896-0",
+    "src": "/images/portfolio/gold-dinner-menu.jpg",
+    "title": "Gold Ink Pointed-Pen Menu",
+    "category": "Calligraphy & Stationery",
+    "featured": true,
+    "alt": "A calligrapher writing a dinner menu in shimmering gold ink using an oblique pointed pen and a small brush."
+  },
+  {
+    "id": "834-0",
+    "src": "/images/portfolio/navy-copper-suite.jpg",
+    "title": "Navy & Copper Wedding Suite",
+    "category": "Weddings & Events",
+    "featured": true,
+    "alt": "Blue and copper wedding stationery suite featuring an addressed navy envelope, calligraphed invitation, menu card, and RSVP."
+  },
+  {
+    "id": "853-0",
+    "src": "/images/portfolio/deckled-menus.jpg",
+    "title": "Deckled-Edge Dinner Menus",
+    "category": "Weddings & Events",
+    "featured": true,
+    "alt": "Deckled edge dinner menus with calligraphy script and a metallic bronze stripe, styled next to purple flowers on a white surface."
+  },
+  {
+    "id": "86-1",
+    "src": "/images/portfolio/green-floral-envelope.jpg",
+    "title": "Hand-Painted Floral Envelope",
+    "category": "Calligraphy & Stationery",
+    "featured": true,
+    "alt": "A green envelope flap decorated with painted blue floral artwork and white flourishes, arranged beside an oblique calligraphy pen."
+  },
+  {
+    "id": "723-0",
+    "src": "/images/portfolio/handmade-envelopes.jpg",
+    "title": "Handmade Paper Envelopes",
+    "category": "Weddings & Events",
+    "featured": false,
+    "alt": "Pink and grey handmade paper envelopes addressed in flourished calligraphic script, displayed with stamps and a brush pen."
+  },
+  {
+    "id": "858-0",
+    "src": "/images/portfolio/black-paper-script.jpg",
+    "title": "White Ink on Torn Black Paper",
+    "category": "Calligraphy & Stationery",
+    "featured": true,
+    "alt": "White calligraphy on torn black paper reading 'Do small things with great love,' displayed on wood beside an oblique pointed pen."
+  },
+  {
+    "id": "892-0",
+    "src": "/images/portfolio/floral-thank-you.jpg",
+    "title": "Floral Pointed-Pen Card",
+    "category": "Calligraphy & Stationery",
+    "featured": false,
+    "alt": "A floral card lettered with Thank You rests on a brass stand next to a fountain pen and an addressed blush envelope."
+  },
+  {
+    "id": "582-0",
+    "src": "/images/portfolio/watercolor-clematis.jpg",
+    "title": "Clematis Watercolor & Dip Pen",
+    "category": "Watercolor & Art",
+    "featured": true,
+    "alt": "A watercolor painting of purple clematis flowers next to an oblique dip pen, brush, paint palette, and script reading Clematis."
+  },
+  {
+    "id": "535-0",
+    "src": "/images/portfolio/watercolor-wisteria.jpg",
+    "title": "Wisteria Watercolor & Script",
+    "category": "Watercolor & Art",
+    "featured": true,
+    "alt": "Watercolor painting of purple wisteria alongside pointed pen calligraphy reading Wisteria, an oblique pen, and an ink bottle."
+  },
+  {
+    "id": "283-0",
+    "src": "/images/portfolio/wildflowers-quote.jpg",
+    "title": "Wildflower Quote Lettering",
+    "category": "Watercolor & Art",
+    "featured": false,
+    "alt": "Green calligraphy reading 'Leave the road, take the trails' beside watercolor wildflowers, an ink bottle, and an oblique pen."
+  },
+  {
+    "id": "841-1",
+    "src": "/images/portfolio/chalkboard-signage.jpg",
+    "title": "Hand-Lettered Event Signage",
+    "category": "Weddings & Events",
+    "featured": true,
+    "alt": "An artist hand-letters a wooden chalkboard sign reading, A book is a dream that you hold in your hands."
+  },
+  {
+    "id": "786-0",
+    "src": "/images/portfolio/copper-bottles.jpg",
+    "title": "Custom Event Bottle Lettering",
+    "category": "Engraving & Onsite",
+    "featured": false,
+    "alt": "Water bottles with black labels lettered in copper calligraphy reading Josilyn, Kathryn, and Sarah."
+  },
+  {
+    "id": "695-0",
+    "src": "/images/portfolio/studio-desk.jpg",
+    "title": "In the Studio",
+    "category": "Calligraphy & Stationery",
+    "featured": false,
+    "alt": "Portrait of a smiling calligrapher holding an oblique pen and paintbrushes in her studio."
+  }
+]
