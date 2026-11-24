@@ -28,9 +28,36 @@ const STEPS = [
   },
 ];
 
+const INQUIRE_FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      "name": "What surfaces can Melissa Esplin engrave onsite at events?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Melissa engraves fragrance bottles, wine and champagne bottles, glassware, cosmetics packaging, leather goods, and metal accessories live onsite for luxury brand activations, corporate events, and weddings.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Does Melissa Esplin travel outside of Utah for live engraving?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. While based in Draper, Utah, Melissa travels nationwide for retail brand activations, VIP gifting events, and destination weddings.",
+      },
+    },
+  ],
+};
+
 export default function InquirePage() {
   return (
     <div className="bg-[var(--background)] py-20">
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(INQUIRE_FAQ_JSON_LD) }}
+        type="application/ld+json"
+      />
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl">
           <div className="space-y-4">

@@ -44,8 +44,26 @@ export default async function BlogPostPage({ params }: PageProps) {
   const monthLabel = formatMonthYear(year, month);
   const { newer, older } = getAdjacentMonths(year, month);
 
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt || `${post.title} — article by Melissa Esplin.`,
+    datePublished: `${year}-${month}-01`,
+    author: {
+      "@type": "Person",
+      name: "Melissa Esplin",
+      url: "https://www.melissaesplin.com/",
+    },
+    mainEntityOfPage: `https://www.melissaesplin.com/${year}/${month}/${slug}/`,
+  };
+
   return (
     <div className="bg-[var(--background)] py-16">
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+        type="application/ld+json"
+      />
       <article className="container mx-auto max-w-3xl px-4">
         <div className="mb-10 space-y-4 border-b border-border/70 pb-8">
           <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
