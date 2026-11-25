@@ -106,7 +106,6 @@ export function PortfolioGallery({
                 {selected.category}
               </p>
               <h3 className="text-2xl font-semibold text-foreground">{selected.title}</h3>
-              <p className="text-sm leading-relaxed text-foreground/75">{selected.alt}</p>
             </div>
           </div>
         </div>
