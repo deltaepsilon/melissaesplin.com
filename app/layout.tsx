@@ -22,9 +22,6 @@ export const metadata: Metadata = {
   },
   description:
     "Live onsite fragrance & glass engraving, luxury brand activations, wedding calligraphy, and bespoke lettering by Melissa Esplin in Draper, Utah & nationwide.",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",

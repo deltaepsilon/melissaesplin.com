@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PortfolioGallery } from "@/components/portfolio-gallery";
 import { PORTFOLIO_ITEMS } from "@/lib/portfolio";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const ENGRAVING_HIGHLIGHTS = [
   {

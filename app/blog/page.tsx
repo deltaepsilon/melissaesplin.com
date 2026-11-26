@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Blog Archive",
   description:
     "Explore 1,467 archived articles, free printables, calligraphy tutorials, and watercolor posts from Melissa Esplin (2007–2021).",
+  alternates: {
+    canonical: "/blog/",
+  },
 };
 
 export default function BlogPage() {

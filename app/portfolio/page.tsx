@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Portfolio",
   description:
     "Curated live engraving, onsite brand activations, pointed-pen calligraphy, wedding stationery, and watercolor work by Melissa Esplin.",
+  alternates: {
+    canonical: "/portfolio/",
+  },
 };
 
 export default function PortfolioPage() {

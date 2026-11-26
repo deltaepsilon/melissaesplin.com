@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Book an Event or Commission",
   description:
     "Inquire to book Melissa Esplin for live onsite engraving, brand activations, wedding calligraphy, or custom studio commissions.",
+  alternates: {
+    canonical: "/inquire/",
+  },
 };
 
 const STEPS = [
